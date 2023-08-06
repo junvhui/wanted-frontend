@@ -189,6 +189,8 @@ function TodoList() {
     const updatedTodos = [...todos];
     updatedTodos[key].isCompleted = !updatedTodos[key].isCompleted;
     setTodos(updatedTodos);
+    console.log(updatedTodos[key].isCompleted);
+    setEditTodoisCompleted(updatedTodos[key].isCompleted);
     console.log(updatedTodos);
   };
 
@@ -245,7 +247,7 @@ function TodoList() {
 
   return (
     <TodoListContainer>
-      <h1>TO DO LIST</h1>
+      <h1 style={{ color: "#007bff" }}>TO DO LIST</h1>
       <TodoWrap>
         <TodoInput
           data-testid="new-todo-input"
@@ -262,7 +264,7 @@ function TodoList() {
             <>
               <Input
                 type="checkbox"
-                checked={todo.completed}
+                checked={todo.isCompleted}
                 onChange={() => handleTodoToggle(index)}
               />
               <input
@@ -289,7 +291,7 @@ function TodoList() {
             <>
               <Input
                 type="checkbox"
-                checked={todo.completed}
+                checked={todo.isCompleted}
                 onChange={() => handleTodoToggle(index)}
               />
               <TodoText>{todo.todo}</TodoText>

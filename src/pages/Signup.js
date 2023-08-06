@@ -65,7 +65,7 @@ function Signup() {
 
   return (
     <SignupContainer>
-      <Title>회원가입 페이지</Title>
+      <Title>회원가입</Title>
       <Input
         data-testid="email-input"
         type="email"
@@ -98,7 +98,7 @@ const SignupContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  color: #333;
+  color: #007bff;
 `;
 
 const Input = styled.input`

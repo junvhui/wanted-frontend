@@ -7,7 +7,7 @@ const SigninContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  color: #333;
+  color: #007bff;
 `;
 
 const Input = styled.input`
@@ -69,7 +69,7 @@ function Signin() {
 
   return (
     <SigninContainer>
-      <Title>로그인 페이지</Title>
+      <Title>로그인</Title>
       <Input
         data-testid="email-input"
         type="email"
