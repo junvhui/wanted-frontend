@@ -116,7 +116,7 @@ function TodoList() {
   const [jwtToken, setJwtToken] = useState(""); // jwt 토큰
   const [editId, setEditId] = useState(null);
   const [editTodo, setEditTodo] = useState("");
-  const [editTodoisCompleted, setEditTodoisCompleted] = useState(false);
+  const [editTodoisCompleted, setEditTodoisCompleted] = useState("");
 
   //값 적는 내용
   const handleInputChange = (e) => {
