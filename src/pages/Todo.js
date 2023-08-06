@@ -114,38 +114,9 @@ function TodoList() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
   const [jwtToken, setJwtToken] = useState(""); // jwt 토큰
-  const [editId, setEditId] = useState(null); // todo list 수정 id
-  const [editTodo, setEditTodo] = useState(""); // todo list 수정 value
-  const [editTodoisCompleted, setEditTodoisCompleted] = useState(false); // todo list 수정 isCompleted
-
-  //GET
-  useEffect(() => {
-    if (localStorage.getItem("token") === null) {
-      window.location.replace("/signin");
-    } else {
-      setJwtToken(localStorage.getItem("token"));
-    }
-    fetch("https://www.pre-onboarding-selection-task.shop/todos", {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + jwtToken,
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        for (let i = 0; i < response.length; i++) {
-          const getTodoItem = {
-            id: response[i].id,
-            todo: response[i].todo,
-            isCompleted: response[i].isCompleted,
-            userId: response[i].userId,
-          };
-          console.log(getTodoItem);
-          setTodos((todos) => [...todos, getTodoItem]);
-        }
-      })
-      .catch((error) => {});
-  }, [jwtToken]);
+  const [editId, setEditId] = useState(null);
+  const [editTodo, setEditTodo] = useState("");
+  const [editTodoisCompleted, setEditTodoisCompleted] = useState(false);
 
   //값 적는 내용
   const handleInputChange = (e) => {
@@ -181,6 +152,35 @@ function TodoList() {
       });
     setNewTodo("");
   };
+
+  //GET
+  useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      window.location.replace("/signin");
+    } else {
+      setJwtToken(localStorage.getItem("token"));
+    }
+    fetch("https://www.pre-onboarding-selection-task.shop/todos", {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + jwtToken,
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        for (let j = 0; j < response.length; j++) {
+          const getTodoList = {
+            id: response[j].id,
+            todo: response[j].todo,
+            isCompleted: response[j].isCompleted,
+            userId: response[j].userId,
+          };
+          console.log(getTodoList);
+          setTodos((todos) => [...todos, getTodoList]);
+        }
+      })
+      .catch((error) => {});
+  }, [jwtToken]);
 
   // 체크박스
   const handleTodoToggle = (key) => {
