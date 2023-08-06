@@ -160,26 +160,28 @@ function TodoList() {
     } else {
       setJwtToken(localStorage.getItem("token"));
     }
-    fetch("https://www.pre-onboarding-selection-task.shop/todos", {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + jwtToken,
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        for (let j = 0; j < response.length; j++) {
-          const getTodoList = {
-            id: response[j].id,
-            todo: response[j].todo,
-            isCompleted: response[j].isCompleted,
-            userId: response[j].userId,
-          };
-          console.log(getTodoList);
-          setTodos((todos) => [...todos, getTodoList]);
-        }
+    if (jwtToken) {
+      fetch("https://www.pre-onboarding-selection-task.shop/todos", {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + jwtToken,
+        },
       })
-      .catch((error) => {});
+        .then((response) => response.json())
+        .then((response) => {
+          for (let j = 0; j < response.length; j++) {
+            const getTodoList = {
+              id: response[j].id,
+              todo: response[j].todo,
+              isCompleted: response[j].isCompleted,
+              userId: response[j].userId,
+            };
+            console.log(getTodoList);
+            setTodos((todos) => [...todos, getTodoList]);
+          }
+        })
+        .catch((error) => {});
+    }
   }, [jwtToken]);
 
   // 체크박스
